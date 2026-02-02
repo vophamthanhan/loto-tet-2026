@@ -1,25 +1,430 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Lô Tô Year End Party 2026</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/loto-tet-2026/assets/index-C3Eoh0Db.js"></script>
-    <link rel="stylesheet" crossorigin href="/loto-tet-2026/assets/index-XQzNeGEu.css">
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script
-      defer
-      src="https://manus-analytics.com/umami"
-      data-website-id="4cfc706d-1b5f-429b-96b4-22be2be09cda"></script>
-  </body>
-
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lô Tô Year End Party 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Crimson+Text:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Crimson Text', serif;
+      background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #8B0000 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      min-height: 100vh;
+      padding: 10px;
+      position: relative;
+    }
+    
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 10px;
+      gap: 10px;
+    }
+    
+    .logo { height: 60px; object-fit: contain; }
+    .year-end-party { height: 80px; object-fit: contain; }
+    
+    .buttons {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .btn {
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    
+    .btn-firework { background: linear-gradient(135deg, #FF6B00, #FF0000); color: white; }
+    .btn-prize { background: linear-gradient(135deg, #FFD700, #FFA500); color: white; }
+    .btn-reset { background: linear-gradient(135deg, #666, #333); color: white; }
+    
+    /* Drawn numbers board */
+    .drawn-board {
+      background: rgba(0,0,0,0.4);
+      border: 3px solid #FFD700;
+      border-radius: 15px;
+      margin: 10px auto;
+      padding: 15px;
+      max-width: 900px;
+    }
+    
+    .drawn-title {
+      font-family: 'Playfair Display', serif;
+      color: #FFD700;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .drawn-numbers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      min-height: 120px;
+      align-content: flex-start;
+    }
+    
+    .drawn-ball {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(145deg, #FFD700, #FFA500);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: bold;
+      color: #8B0000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 -3px 10px rgba(0,0,0,0.2);
+      animation: popIn 0.3s ease-out;
+    }
+    
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    /* Loto balls grid */
+    .loto-grid {
+      background: rgba(0,0,0,0.3);
+      border-radius: 15px;
+      padding: 15px;
+      margin: 10px auto;
+      max-width: 1000px;
+    }
+    
+    .loto-balls {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 8px;
+      justify-items: center;
+    }
+    
+    @media (max-width: 768px) {
+      .loto-balls { grid-template-columns: repeat(8, 1fr); }
+      .logo { height: 40px; }
+      .year-end-party { height: 50px; }
+    }
+    
+    @media (max-width: 480px) {
+      .loto-balls { grid-template-columns: repeat(6, 1fr); }
+    }
+    
+    .loto-ball {
+      width: 55px;
+      height: 55px;
+      background: linear-gradient(145deg, #FFD700, #DAA520);
+      border: 3px solid #8B4513;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: bold;
+      color: #4A0000;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 -4px 10px rgba(0,0,0,0.2);
+    }
+    
+    .loto-ball:hover:not(.selected) {
+      transform: scale(1.15);
+      box-shadow: 0 6px 15px rgba(255,215,0,0.5);
+    }
+    
+    .loto-ball.selected {
+      background: linear-gradient(145deg, #666, #444);
+      border-color: #333;
+      color: #999;
+      cursor: default;
+      transform: scale(0.9);
+      opacity: 0.5;
+    }
+    
+    /* Decorations */
+    .lantern {
+      position: fixed;
+      top: 0;
+      width: 50px;
+      z-index: 100;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .lantern-left { left: 10px; }
+    .lantern-right { right: 10px; animation-delay: 1.5s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+    
+    .chua-cau {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 40%;
+      opacity: 0.8;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .cau-rong {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      height: 40%;
+      opacity: 0.8;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    /* Fireworks */
+    .fireworks {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+      display: none;
+    }
+    
+    .firework {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
+    }
+    
+    @keyframes explode {
+      0% { transform: scale(0); opacity: 1; }
+      100% { transform: scale(20); opacity: 0; }
+    }
+    
+    /* Prize overlay */
+    .prize-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    
+    .prize-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 60px;
+      color: #FFD700;
+      text-shadow: 0 0 30px #FFD700, 0 0 60px #FFA500;
+      animation: pulse 0.5s ease-in-out infinite alternate;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+    
+    .hint-text {
+      color: rgba(255,215,0,0.7);
+      text-align: center;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <img src="images/longden.png" alt="Đèn lồng" class="lantern lantern-left">
+  <img src="images/longden.png" alt="Đèn lồng" class="lantern lantern-right">
+  <img src="images/chua-cau.png" alt="Chùa Cầu" class="chua-cau">
+  <img src="images/cau-rong.png" alt="Cầu Rồng" class="cau-rong">
+  
+  <div class="container">
+    <header class="header">
+      <img src="images/logo.png" alt="Logo" class="logo">
+      <img src="images/chu.png" alt="Year End Party" class="year-end-party">
+      <div class="buttons">
+        <button class="btn btn-firework" onclick="fireFireworks()" title="Pháo Hoa">✨</button>
+        <button class="btn btn-prize" onclick="showPrize()" title="Nhận Giải">🏆</button>
+        <button class="btn btn-reset" onclick="resetGame()" title="Reset">↺</button>
+      </div>
+    </header>
+    
+    <div class="drawn-board">
+      <div class="drawn-title">SỐ ĐÃ QUAY (<span id="count">0</span>/60)</div>
+      <p class="hint-text">Bấm vào các viên bi bên dưới để chọn số</p>
+      <div class="drawn-numbers" id="drawnNumbers"></div>
+    </div>
+    
+    <div class="loto-grid">
+      <div class="loto-balls" id="lotoBalls"></div>
+    </div>
+  </div>
+  
+  <div class="fireworks" id="fireworks"></div>
+  <div class="prize-overlay" id="prizeOverlay" onclick="hidePrize()">
+    <div class="prize-text">🏆 TRÚNG GIẢI! 🏆</div>
+  </div>
+  
+  <script>
+    const drawnNumbers = new Set();
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // Initialize loto balls
+    function initBalls() {
+      const container = document.getElementById('lotoBalls');
+      container.innerHTML = '';
+      for (let i = 1; i <= 60; i++) {
+        const ball = document.createElement('div');
+        ball.className = 'loto-ball';
+        ball.textContent = i;
+        ball.onclick = () => selectNumber(i, ball);
+        container.appendChild(ball);
+      }
+    }
+    
+    function selectNumber(num, ball) {
+      if (drawnNumbers.has(num)) return;
+      
+      drawnNumbers.add(num);
+      ball.classList.add('selected');
+      
+      // Add to drawn board
+      const drawnContainer = document.getElementById('drawnNumbers');
+      const drawnBall = document.createElement('div');
+      drawnBall.className = 'drawn-ball';
+      drawnBall.textContent = num;
+      drawnContainer.appendChild(drawnBall);
+      
+      // Update count
+      document.getElementById('count').textContent = drawnNumbers.size;
+      
+      // Play sound
+      playClickSound();
+    }
+    
+    function playClickSound() {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.2);
+    }
+    
+    function fireFireworks() {
+      const container = document.getElementById('fireworks');
+      container.style.display = 'block';
+      container.innerHTML = '';
+      
+      const colors = ['#FF0000', '#FFD700', '#00FF00', '#00FFFF', '#FF00FF', '#FFA500'];
+      
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          const fw = document.createElement('div');
+          fw.className = 'firework';
+          fw.style.left = Math.random() * 100 + '%';
+          fw.style.top = Math.random() * 60 + '%';
+          fw.style.background = colors[Math.floor(Math.random() * colors.length)];
+          container.appendChild(fw);
+          
+          // Play sound
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(100 + Math.random() * 200, audioCtx.currentTime);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.3);
+        }, i * 100);
+      }
+      
+      setTimeout(() => {
+        container.style.display = 'none';
+      }, 4000);
+    }
+    
+    function showPrize() {
+      document.getElementById('prizeOverlay').style.display = 'flex';
+      fireFireworks();
+      
+      // Play fanfare
+      const notes = [523, 659, 784, 1047];
+      notes.forEach((freq, i) => {
+        setTimeout(() => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.5);
+        }, i * 200);
+      });
+      
+      setTimeout(hidePrize, 5000);
+    }
+    
+    function hidePrize() {
+      document.getElementById('prizeOverlay').style.display = 'none';
+    }
+    
+    function resetGame() {
+      if (confirm('Bạn có chắc muốn reset tất cả số đã quay?')) {
+        drawnNumbers.clear();
+        document.getElementById('drawnNumbers').innerHTML = '';
+        document.getElementById('count').textContent = '0';
+        document.querySelectorAll('.loto-ball').forEach(ball => {
+          ball.classList.remove('selected');
+        });
+      }
+    }
+    
+    // Initialize
+    initBalls();
+  </script>
+</body>
 </html>
