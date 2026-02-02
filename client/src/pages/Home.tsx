@@ -356,7 +356,7 @@ export default function Home() {
     <div 
       className="h-screen w-full relative overflow-hidden"
       style={{
-        backgroundImage: "url('/images/background-red.jpg')",
+        backgroundImage: "url('./images/background-red.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -374,27 +374,27 @@ export default function Home() {
       
       {/* Chùa Cầu Hội An - Left side */}
       <img 
-        src="/images/chua-cau.png" 
+        src="./images/chua-cau.png" 
         alt="Chùa Cầu Hội An" 
         className="absolute bottom-0 left-0 h-[45%] opacity-85 z-10 pointer-events-none object-contain"
       />
       
       {/* Cầu Rồng Đà Nẵng - Right side */}
       <img 
-        src="/images/cau-rong.png" 
+        src="./images/cau-rong.png" 
         alt="Cầu Rồng Đà Nẵng" 
         className="absolute bottom-0 right-0 h-[45%] opacity-85 z-10 pointer-events-none object-contain"
       />
       
       {/* Decorative lanterns */}
       <img 
-        src="/images/longden.png" 
+        src="./images/longden.png" 
         alt="Đèn lồng" 
         className="absolute top-0 left-2 w-12 md:w-16 float-animation opacity-90 z-10"
         style={{ animationDelay: "0s" }}
       />
       <img 
-        src="/images/longden.png" 
+        src="./images/longden.png" 
         alt="Đèn lồng" 
         className="absolute top-0 right-2 w-12 md:w-16 float-animation opacity-90 z-10"
         style={{ animationDelay: "1.5s" }}
@@ -406,14 +406,14 @@ export default function Home() {
         <header className="flex items-center justify-between gap-2">
           {/* Left: Logo */}
           <img 
-            src="/images/logo.png" 
+            src="./images/logo.png" 
             alt="Hội An Hoa & Organic" 
             className="h-12 md:h-16 lg:h-20 object-contain"
           />
           
           {/* Center: Year End Party - LARGE */}
           <img 
-            src="/images/chu.png" 
+            src="./images/chu.png" 
             alt="Year End Party" 
             className="h-16 md:h-24 lg:h-32 object-contain flex-shrink-0"
           />
